@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ -n "$PS1" ]; then
+    if [ ! -d "$HOME/.config/containerconf" ]; then
+        echo "Hello there! Welcome to cherryOS!"
+        echo "For you to access your shell, we need to set up the default container shell."
+        echo "Don't worry! Hopefully, this wont take long. We'll tell you when we are done."
+        distrobox-assemble create --file /etc/containerconf/configs.d/cherry.ini
+        echo "Done! Restart your shell to enjoy your container."
+        sleep 1d
+    elif [ -f "$HOME/.config/containerconf/override.conf" ]; then
+        echo "Starting your shell...."
+        exec distrobox-enter "$(cat $HOME/.config/containerconf/override.conf)"
+    else
+        echo "Starting your shell...."
+        exec distrobox-enter cherry
+    fi
+else
+    exec /usr/bin/env bash
+fi

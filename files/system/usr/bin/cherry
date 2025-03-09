@@ -1,46 +1,25 @@
 #!/bin/bash
 
-PREUSER="$USER"
-CONTAINER_CONFIG_DIR="/etc/containerconf.d"
-USER_CONTAINER_CONFIG_DIR="$CONTAINER_CONFIG_DIR/$PREUSER"
-DEFAULT_CONTAINER_CONFIG="$USER_CONTAINER_CONFIG_DIR/default.conf"
-DEFAULT_CONTAINER_INI="$CONTAINER_CONFIG_DIR/configs.d/fedora.ini"
+CONTAINER_CONFIG_DIR="/etc/containerconf"
+USER_CONTAINER_CONFIG_DIR="$CONTAINER_CONFIG_DIR/$USER"
 CONTAINER_LIST_FILE="$CONTAINER_CONFIG_DIR/configs.d/list.txt"
 CONTAINER_OVERRIDE_CONFIG="$HOME/.config/containerconf.d/override.conf"
 
 help() {
   cat <<EOF 
-Usage: synergy <command> [options]
+Usage: cherry <command> [options]
 
 Commands:
-  setup             Setup synergy
-  new [flags]       Create a new container
-  rm [flags]        Remove an existing container
-  switch            Switch containers
-  set-default       Set the default container started/opened on login
-  help              Display this message
-====> Danger Zone
-  host-exec <cmd>   Execute a command on the host system
-  host-shell        Open a shell on the host system, exit using 'exit'
+  os {exec,shell}             baseOS commands
+  container {new,rm,switch}   containerOS commands
+  bootc {...}                 wrapper for bootc
+  version                     show program version
+  help                        show this dialogue
 EOF
 }
 
-setup() {
-  if [[ ! -d "$USER_CONTAINER_CONFIG_DIR" ]]; then
-    echo "Hello there! Welcome to synergyOS!"
-    echo "For you to access your shell, we need to set up the default container."
-    echo "Don't worry! Hopefully, this wont take long. We'll tell you when we are done."
-    distrobox-assemble create --file "$DEFAULT_CONTAINER_INI"
-    echo "Hey! We need your password."
-    run0 mkdir -p "$USER_CONTAINER_CONFIG_DIR"
-    run0 echo "fedora" > "$DEFAULT_CONTAINER_CONFIG"
-    echo "Done! Restart your shell to enjoy your container."
-    sleep 1d
-  else
-    echo "Setup has already been completed!"
-    echo "Use 'synergy help' for more commands."
-    exit 1
-  fi
+version() {
+  echo "cherry v1.2.2-beta"
 }
 
 new() {
@@ -55,8 +34,8 @@ new() {
       echo "Container created."
       ;;
     2)
-      read -p "Specify the container reference/url you want to use. ex. fedora:41, https://quay.io/fedora/fedora-minimal:41 > " manual_container_url
-      read -p "Name your container. Preferably creative. > " manual_container_name
+      read -p "Container URL: " manual_container_url
+      read -p "Container name: " manual_container_name
       read -p "Extra flags to pass to 'distrobox-create'. Optional. > " manual_container_flags
       distrobox-create --pull --image "$manual_container_url" --name "$manual_container_name" $manual_container_flags
       echo "Container created!"
@@ -75,7 +54,7 @@ rm() {
     echo "Containers:"
     distrobox-list
     read -p "> " container_name_rm
-    if [[ "$container_name_rm" == "fedora" ]]; then echo "You cannot delete the default container!" && exit 1; fi
+    if [[ "$container_name_rm" == "cherry" ]]; then echo "You cannot delete the default container!" && exit 1; fi
     distrobox-rm "$container_name_rm"
   else
     echo "Cancelling."
@@ -106,8 +85,7 @@ os-shell() {
 container-menu() {
   case "$1" in
     new)
-      shift
-      new "$@"
+      new
       ;;
     rm)
       shift
@@ -147,6 +125,13 @@ case "$1" in
   container)
     shift
     container-menu
+    ;;
+  bootc)
+    shift
+    bootc "$@"
+    ;;
+  version)
+    version
     ;;
   help)
     help

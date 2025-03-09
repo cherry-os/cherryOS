@@ -2,4 +2,4 @@
 - fedora
 - ubuntu
 - debian
-- opensuse (tumbleweed)
+- opensuse

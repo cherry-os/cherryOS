@@ -1,0 +1,10 @@
+---
+name: cli
+description: Default container for cherryOS. Designed to integreate with the host.
+base-image: ghcr.io/ublue-os/wolfi-toolbox
+image-version: latest
+
+modules:
+  type: script
+  scripts:
+    - setup-cli.sh

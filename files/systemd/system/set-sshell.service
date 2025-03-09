@@ -1,5 +1,5 @@
 [Unit]
-Description=Set shell for all current users to sshell
+Description=Set shell for all current users to cshell
 After=network.target
 
 [Service]
