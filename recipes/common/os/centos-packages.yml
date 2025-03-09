@@ -1,0 +1,12 @@
+type: rpm-ostree
+repos: 
+  - https://copr.fedorainfracloud.org/coprs/chronos/synpkgs/repo/centos-stream-%OS_VERSION%/chronos-synpkgs-centos-stream-%OS_VERSION%.repo
+install:
+  - didyoumean
+  - atuin
+  - util-linux
+  - epel-release
+remove:
+  - toolbox
+  - sudo
+  - sudo-python-plugin

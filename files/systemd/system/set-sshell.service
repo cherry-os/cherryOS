@@ -1,0 +1,12 @@
+[Unit]
+Description=Set shell for all current users to sshell
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /etc/containerconf/shell.d/set-shell.sh
+ExecStop=/bin/bash -c "systemctl disable %n && rm /etc/systemd/system/%n"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=network.target

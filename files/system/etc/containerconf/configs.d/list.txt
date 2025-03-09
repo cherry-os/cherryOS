@@ -1,0 +1,5 @@
+- arch
+- fedora
+- ubuntu
+- debian
+- opensuse (tumbleweed)

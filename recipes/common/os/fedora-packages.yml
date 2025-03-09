@@ -1,0 +1,12 @@
+type: rpm-ostree
+repos: 
+  - https://copr.fedorainfracloud.org/coprs/chronos/synpkgs/repo/fedora-%OS_VERSION%/chronos-synpkgs-fedora-%OS_VERSION%.repo
+install:
+  - didyoumean
+  - atuin
+  - tealdeer
+  - util-linux
+remove:
+  - toolbox
+  - sudo
+  - sudo-python-plugin

@@ -1,0 +1,158 @@
+#!/bin/bash
+
+PREUSER="$USER"
+CONTAINER_CONFIG_DIR="/etc/containerconf.d"
+USER_CONTAINER_CONFIG_DIR="$CONTAINER_CONFIG_DIR/$PREUSER"
+DEFAULT_CONTAINER_CONFIG="$USER_CONTAINER_CONFIG_DIR/default.conf"
+DEFAULT_CONTAINER_INI="$CONTAINER_CONFIG_DIR/configs.d/fedora.ini"
+CONTAINER_LIST_FILE="$CONTAINER_CONFIG_DIR/configs.d/list.txt"
+CONTAINER_OVERRIDE_CONFIG="$HOME/.config/containerconf.d/override.conf"
+
+help() {
+  cat <<EOF 
+Usage: synergy <command> [options]
+
+Commands:
+  setup             Setup synergy
+  new [flags]       Create a new container
+  rm [flags]        Remove an existing container
+  switch            Switch containers
+  set-default       Set the default container started/opened on login
+  help              Display this message
+====> Danger Zone
+  host-exec <cmd>   Execute a command on the host system
+  host-shell        Open a shell on the host system, exit using 'exit'
+EOF
+}
+
+setup() {
+  if [[ ! -d "$USER_CONTAINER_CONFIG_DIR" ]]; then
+    echo "Hello there! Welcome to synergyOS!"
+    echo "For you to access your shell, we need to set up the default container."
+    echo "Don't worry! Hopefully, this wont take long. We'll tell you when we are done."
+    distrobox-assemble create --file "$DEFAULT_CONTAINER_INI"
+    echo "Hey! We need your password."
+    run0 mkdir -p "$USER_CONTAINER_CONFIG_DIR"
+    run0 echo "fedora" > "$DEFAULT_CONTAINER_CONFIG"
+    echo "Done! Restart your shell to enjoy your container."
+    sleep 1d
+  else
+    echo "Setup has already been completed!"
+    echo "Use 'synergy help' for more commands."
+    exit 1
+  fi
+}
+
+new() {
+  read -p "Do you want to (1) choose from a list of images, or (2) specify your own (advanced)? 1/2: " container_new_choice
+
+  case "$container_new_choice" in
+    1)
+      echo "Choose a container to create:"
+      cat "$CONTAINER_LIST_FILE"
+      read -p "> " container_new_choice_config
+      distrobox-assemble create --file "${container_new_choice_config}.ini"
+      echo "Container created."
+      ;;
+    2)
+      read -p "Specify the container reference/url you want to use. ex. fedora:41, https://quay.io/fedora/fedora-minimal:41 > " manual_container_url
+      read -p "Name your container. Preferably creative. > " manual_container_name
+      read -p "Extra flags to pass to 'distrobox-create'. Optional. > " manual_container_flags
+      distrobox-create --pull --image "$manual_container_url" --name "$manual_container_name" $manual_container_flags
+      echo "Container created!"
+      ;;
+    *)
+      echo "Invalid choice."
+      exit 1
+      ;;
+  esac
+}
+
+rm() {
+  read -p "Are you sure you want to do this? y/n: " rm_confirm
+  if [[ "$rm_confirm" == "y" ]]; then
+    echo "Input the container to remove."
+    echo "Containers:"
+    distrobox-list
+    read -p "> " container_name_rm
+    if [[ "$container_name_rm" == "fedora" ]]; then echo "You cannot delete the default container!" && exit 1; fi
+    distrobox-rm "$container_name_rm"
+  else
+    echo "Cancelling."
+    exit 1
+  fi
+}
+
+switch() {
+  echo "Input the container to switch to. Format: apx-CONTAINER_NAME"
+  echo "Containers:"
+  distrobox-list
+  read -p "> " container_name_switch
+  echo "$container_name_switch" > "$CONTAINER_OVERRIDE_CONFIG"
+  echo "Switch complete. Reopen this terminal to open your new container."
+  echo "Note that it may take a second for the container to start."
+}
+
+os-exec() {
+  "$@"
+}
+
+os-shell() {
+  clear
+  echo "You are running a shell on the HOST SYSTEM! Proceed with caution."
+  /bin/sh
+}
+
+container-menu() {
+  case "$1" in
+    new)
+      shift
+      new "$@"
+      ;;
+    rm)
+      shift
+      rm "$@"
+      ;;
+    switch)
+      switch
+      ;;
+    *)
+      help
+      exit 1
+      ;;
+  esac
+}
+
+os-menu() {
+  case "$1" in
+    exec)
+      shift
+      os-exec
+      ;;
+    shell)
+      os-shell
+      ;;
+    *)
+      help
+      exit 1
+      ;;
+  esac
+}
+
+case "$1" in
+  os)
+    shift
+    os-menu
+    ;;
+  container)
+    shift
+    container-menu
+    ;;
+  help)
+    help
+    ;;
+  *)
+    help
+    exit 1
+    ;;
+esac

@@ -1,0 +1,11 @@
+[Unit]
+Description=Start the user's default container
+After=default.target
+
+[Service]
+Type=oneshot
+ConditionPathExists=/etc/containerconf/$USER
+ExecStart=/usr/bin/distrobox-enter "$(cat /etc/containerconf/$USER/default.conf)" -- echo "init" && exit 0
+
+[Install]
+WantedBy=default.target
