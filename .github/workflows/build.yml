@@ -1,4 +1,4 @@
-name: bluebuild
+name: Build cherryOS variants
 on:
   schedule:
     - cron:
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   bluebuild:
-    name: Build CherryOS Variants
+    name: Build CherryOS
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -34,7 +34,7 @@ jobs:
           - images/cherry-stable-kde.yml
     steps:
       # the build is fully handled by the reusable github action
-      - name: Build CherryOS
+      - name: Build baseOS
         uses: blue-build/github-action@v1.8
         with:
           recipe: ${{ matrix.recipe }}
