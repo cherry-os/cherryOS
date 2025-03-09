@@ -26,12 +26,12 @@ jobs:
       fail-fast: false # stop GH from cancelling all matrix builds if one fails
       matrix:
         recipe:
-          - images/recipe-cherry-lts.yml
-          - images/recipe-cherry-lts-gnome.yml
-          - images/recipe-cherry-lts-kde.yml
-          - images/recipe-cherry-stable.yml
-          - images/recipe-cherry-stable-gnome.yml
-          - images/recipe-cherry-stable-kde.yml
+          - images/cherry-lts.yml
+          - images/cherry-lts-gnome.yml
+          - images/cherry-lts-kde.yml
+          - images/cherry-stable.yml
+          - images/cherry-stable-gnome.yml
+          - images/cherry-stable-kde.yml
     steps:
       # the build is fully handled by the reusable github action
       - name: Build CherryOS
