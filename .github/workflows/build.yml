@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   bluebuild:
-    name: Build Synergy Variants
+    name: Build CherryOS Variants
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -26,15 +26,15 @@ jobs:
       fail-fast: false # stop GH from cancelling all matrix builds if one fails
       matrix:
         recipe:
-          - images/recipe-synergy-lts.yml
-          - images/recipe-synergy-lts-gnome.yml
-          - images/recipe-synergy-lts-kde.yml
-          - images/recipe-synergy-stable.yml
-          - images/recipe-synergy-stable-gnome.yml
-          - images/recipe-synergy-stable-kde.yml
+          - images/recipe-cherry-lts.yml
+          - images/recipe-cherry-lts-gnome.yml
+          - images/recipe-cherry-lts-kde.yml
+          - images/recipe-cherry-stable.yml
+          - images/recipe-cherry-stable-gnome.yml
+          - images/recipe-cherry-stable-kde.yml
     steps:
       # the build is fully handled by the reusable github action
-      - name: Build Synergy
+      - name: Build CherryOS
         uses: blue-build/github-action@v1.8
         with:
           recipe: ${{ matrix.recipe }}
