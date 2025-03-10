@@ -120,11 +120,11 @@ os-menu() {
 case "$1" in
   os)
     shift
-    os-menu
+    os-menu "$@"
     ;;
   container)
     shift
-    container-menu
+    container-menu "$@"
     ;;
   bootc)
     shift
