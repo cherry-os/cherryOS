@@ -2,4 +2,4 @@ type: script
 scripts:
   - unprotectsudo.sh
   - add-exec-perms.sh
-  - add-image-info
+  - add-image-info.sh
