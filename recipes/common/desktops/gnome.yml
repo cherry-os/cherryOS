@@ -1,3 +1,23 @@
-type: script
-scripts:
-  - install-gnome.sh
+modules:
+  type: script
+  scripts:
+    - install-gnome.sh
+  type: rpm-ostree
+  install:
+    - gnome-weather
+    - snapshot
+    - gnome-calculator
+    - totem
+    - gnome-disks
+    - gnome-tweaks
+    - gparted
+    - gnome-logs
+    - evince
+    - gnome-clocks
+    - loupe
+    - secrets
+    - file-roller
+    - nautilus
+    - sushi
+    - gnome-text-editor
+    - gnome-software

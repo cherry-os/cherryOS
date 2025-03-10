@@ -15,9 +15,6 @@ _____________
   goes through a 5-year release cycle. Based on CentOS stream10.
 - Stable: A bit less stable, but still secure and reliable. May receive breaking changes to system components immediately.
   Based on the latest stable release of Fedora 41.
-- DEV: Unstable, unreliable, and possibly insecure. This type is for the development of cherryOS.
-  Only switch to this branch if you want to contribute to the development of cherryOS, or you know what you're doing.
-  Based on Fedora 41.
 ______________
 Both types have three branches:
 - GNOME: Images coming with the GNOME Desktop Environment

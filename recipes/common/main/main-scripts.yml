@@ -1,5 +1,9 @@
 type: script
 scripts:
   - unprotectsudo.sh
+<<<<<<< HEAD
   - add-exec-perms.sh
   - add-image-info.sh
+=======
+  - add-exec-perms.sh
+>>>>>>> 8e3eb94 (feat: add app circles respectively)
