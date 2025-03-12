@@ -119,7 +119,7 @@ def enable_rpmfusion []: nothing -> nothing {
 
   print $"(ansi green)Enabling '(ansi cyan)($CISCO_REPO)(ansi green)' repo for RPMFusion compatibility(ansi reset)"
   try {
-    ^dnf config-manager setopt $'($CISCO_REPO).enabled=1'
+    ^dnf config-manager --setopt $'($CISCO_REPO).enabled=1'
   } catch {
     exit 1
   }
@@ -144,7 +144,7 @@ def disable_rpmfusion []: nothing -> nothing {
 
 def negativo_repo_list []: nothing -> list<path> {
   try {
-    ^dnf -y repo list --all --json | from json
+    ^dnf -y repolist --all --json | from json
   } catch {
     exit 1
   }
@@ -189,7 +189,7 @@ def enable_negativo []: nothing -> nothing {
     }
     | flatten
     | try {
-      ^dnf -y config-manager setopt ...($in)
+      ^dnf -y config-manager --setopt ...($in)
     } catch {
       exit 1
     }
@@ -240,7 +240,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
       }
 
       try {
-        ^dnf -y config-manager addrepo --overwrite --from-repofile $repo
+        ^dnf -y config-manager addrepo $repo
       } catch {
         exit 1
       }
@@ -283,7 +283,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
       $'($in).enabled=1'
     }
     | try {
-      ^dnf -y config-manager setopt ...($in)
+      ^dnf -y config-manager --setopt ...($in)
     } catch {
       exit 1
     }
