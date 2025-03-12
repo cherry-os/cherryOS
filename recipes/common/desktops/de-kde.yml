@@ -1,3 +1,21 @@
-type: script
-scripts:
-  - install-kde.sh
+type: dnf
+source: local
+group-install:
+  packages:
+    - kde-desktop
+install:
+  packages:
+    - kamoso
+    - kcalc
+    - haruna
+    - kde-partitionmanager
+    - ksystemlog
+    - okular
+    - kclock
+    - gwenview
+    - kweather
+    - konsole
+    - dolphin
+    - ark
+    - spectacle
+    - discover

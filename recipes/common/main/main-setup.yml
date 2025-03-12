@@ -1,3 +1,5 @@
-type: script
-scripts:
-  - lts-setup.sh
+type: dnf
+source: local
+install:
+  packages:
+    - epel-release

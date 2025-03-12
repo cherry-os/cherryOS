@@ -13,7 +13,7 @@ if [ -n "$PS1" ]; then
         exec distrobox-enter "$(cat $HOME/.config/containerconf/override.conf)"
     else
         echo "Starting your shell...."
-        exec distrobox-enter cherry
+        exec distrobox-enter cherry-cli
     fi
 else
     exec /usr/bin/env bash

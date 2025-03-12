@@ -7,19 +7,42 @@ CONTAINER_OVERRIDE_CONFIG="$HOME/.config/containerconf.d/override.conf"
 
 help() {
   cat <<EOF 
-Usage: cherry <command> [options]
+Usage: cherry <subcommand> [option]
 
-Commands:
-  os {exec,shell}             baseOS commands
-  container {new,rm,switch}   containerOS commands
-  bootc {...}                 wrapper for bootc
+Subcommands:
+  stem                        baseOS commands
+  branch                      containerOS commands
+  bootc                       wrapper for bootc
   version                     show program version
   help                        show this dialogue
 EOF
 }
 
+os-help() {
+  cat <<EOF
+Usage: cherry stem [option]
+
+Options:
+  exec                        run a command on the host
+  shell                       open a shell ont he host (/bin/sh)
+  help                        show this dialogue
+EOF
+}
+
+contaienr-help() {
+  cat <<EOF
+Usage: cherry branch [option]
+
+Options:
+  new                         create a new container
+  rm                          remove an existing container
+  switch                      switch to a different container
+  help                        show this dialogue
+EOF
+}
+
 version() {
-  echo "cherry v1.2.2-beta"
+  echo "cherry v1.2.3-beta"
 }
 
 new() {
@@ -37,7 +60,7 @@ new() {
       read -p "Container URL: " manual_container_url
       read -p "Container name: " manual_container_name
       read -p "Extra flags to pass to 'distrobox-create'. Optional. > " manual_container_flags
-      distrobox-create --pull --image "$manual_container_url" --name "$manual_container_name" $manual_container_flags
+      distrobox-create --pull --image "$manual_container_url" --name "branch-$manual_container_name" $manual_container_flags
       echo "Container created!"
       ;;
     *)
@@ -54,7 +77,7 @@ rm() {
     echo "Containers:"
     distrobox-list
     read -p "> " container_name_rm
-    if [[ "$container_name_rm" == "cherry" ]]; then echo "You cannot delete the default container!" && exit 1; fi
+    if [[ "$container_name_rm" == "cherry-cli" ]]; then echo "You cannot delete the default container!" && exit 1; fi
     distrobox-rm "$container_name_rm"
   else
     echo "Cancelling."
@@ -118,11 +141,11 @@ os-menu() {
 }
 
 case "$1" in
-  os)
+  stem)
     shift
     os-menu "$@"
     ;;
-  container)
+  branch)
     shift
     container-menu "$@"
     ;;

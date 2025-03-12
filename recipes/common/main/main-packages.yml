@@ -1,14 +1,17 @@
-type: rpm-ostree
-repos: 
-  - https://copr.fedorainfracloud.org/coprs/chronos/cherries/repo/epel-%OS_VERSION%/chronos-cherries-epel-%OS_VERSION%.repo
+type: dnf
+source: local
+repos:
+  files:
+    - https://copr.fedorainfracloud.org/coprs/chronos/cherries/repo/epel-%OS_VERSION%/chronos-cherries-epel-%OS_VERSION%.repo
 install:
-  - epel-release
-  - didyoumean
-  - atuin
-  - util-linux
-  - topgrade
-  - firefox
+  packages:
+    - didyoumean
+    - atuin
+    - util-linux
+    - topgrade
+    - firefox
 remove:
-  - toolbox
-  - sudo
-  - sudo-python-plugin
+  packages:
+    - toolbox
+    - sudo
+    - sudo-python-plugin

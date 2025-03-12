@@ -5,7 +5,7 @@ After=default.target
 [Service]
 Type=oneshot
 ConditionPathExists=$HOME/.config/containerconf/
-ExecStart=/usr/bin/distrobox-enter cherry -- echo "init" && exit 0
+ExecStart=/usr/bin/distrobox-enter cherry-cli -- echo "init" && exit 0
 
 [Install]
 WantedBy=default.target

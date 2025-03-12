@@ -12,5 +12,4 @@ modules:
   - from-file: common/main/main-setup.yml
   - from-file: common/main/main-packages.yml
   - from-file: common/desktops/de-kde.yml
-  - from-file: common/desktops/appcircle-kde.yml
   - type: signing

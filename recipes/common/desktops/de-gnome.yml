@@ -1,3 +1,25 @@
-type: script
-scripts:
-  - install-gnome.sh
+type: dnf
+source: local
+group-install:
+  packages:
+    - gnome-desktop
+install:
+  packages:
+    - gnome-weather
+    - gnome-clocks
+    - gnome-calculator
+    - gnome-disks
+    - gnome-tweaks
+    - gnome-text-editor
+    - gnome-software
+    - totem
+    - gparted
+    - gnome-logs
+    - loupe
+    - secrets
+    - file-roller
+    - nautilus
+    - sushi
+    - gnome-text-editor
+    - gnome-software
+    - blackbox-terminal
