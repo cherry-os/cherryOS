@@ -144,7 +144,7 @@ def disable_rpmfusion []: nothing -> nothing {
 
 def negativo_repo_list []: nothing -> list<path> {
   try {
-    ^ bash /tmp/modules/dnf/dnf-fix.sh | from json
+    ^bash /tmp/modules/dnf/dnf-repolist.sh | from json
   } catch {
     exit 1
   }
@@ -153,7 +153,7 @@ def negativo_repo_list []: nothing -> list<path> {
     | ansi strip
     | par-each {|repo|
       try {
-        ^ bash /tmp/modules/dnf/dnf-fix.sh | from json
+        ^bash /tmp/modules/dnf/dnf-repolist.sh | from json
       } catch {
         exit 1
       }
@@ -176,7 +176,7 @@ def enable_negativo []: nothing -> nothing {
   add_repos [$NEGATIVO_URL]
 
   try {
-    ^ bash /tmp/modules/dnf/dnf-fix.sh
+    ^bash /tmp/modules/dnf/dnf-repolist.sh
   } catch {
     exit 1
   }
@@ -255,7 +255,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
 
   # Get a list of info for every repo installed
   let repo_info = try {
-    ^ bash /tmp/modules/dnf/dnf-fix.sh
+    ^bash /tmp/modules/dnf/dnf-repoinfo.sh --all
   } catch {
     exit 1
   }
@@ -263,7 +263,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
     | get id
     | par-each {|repo|
       try {
-        ^ bash /tmp/modules/dnf/dnf-fix.sh $repo
+        ^bash /tmp/modules/dnf/dnf-repoinfo.sh $repo
       } catch {
         exit 1
       }
@@ -304,7 +304,7 @@ def remove_repos [$repos: list]: nothing -> nothing {
     $repos
       | par-each {|repo|
         try {
-          ^ bash /tmp/modules/dnf/dnf-fix.sh $repo
+          ^bash /tmp/modules/dnf/dnf-repoinfo.sh $repo
         } catch {
           exit 1
         }
