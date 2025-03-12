@@ -1,20 +1,3 @@
-modules:
-  type: script
-  scripts:
-    - install-kde.sh
-  type: rpm-ostree
-  install:
-    - kamoso
-    - kcalc
-    - haruna
-    - kde-partitionmanager
-    - ksystemlog
-    - okular
-    - kclock
-    - gwenview
-    - kweather
-    - konsole
-    - dolphin
-    - ark
-    - spectacle
-    - discover
+type: script
+scripts:
+  - install-kde.sh
