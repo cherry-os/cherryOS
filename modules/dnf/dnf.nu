@@ -270,6 +270,25 @@ def add_repos [$repos: list]: nothing -> list<string> {
         | from json
     }
     | flatten
+
+  # Return the IDs of all repos that were added
+  let repo_ids = $repo_info
+    | filter {|repo|
+      $repo.repo_file_path in $repo_files
+    }
+    | get id
+
+  $repo_ids
+    | each {
+      $'($in).enabled=1'
+    }
+    | try {
+      ^dnf -y config-manager --setopt ...($in)
+    } catch {
+      exit 1
+    }
+
+  $repo_ids
 }
 
 # A SPECIFIC AND POSSIBLY IMPORTANT FUNCTION WAS REMOVED, REMEMBER TO RESOLVE
