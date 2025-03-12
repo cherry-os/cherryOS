@@ -255,7 +255,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
 
   # Get a list of info for every repo installed
   let repo_info = try {
-    ^bash /tmp/modules/dnf/dnf-repoinfo.sh --all
+    ^bash /tmp/modules/dnf/dnf-repolist.sh
   } catch {
     exit 1
   }
