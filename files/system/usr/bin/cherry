@@ -63,7 +63,7 @@ rm() {
 }
 
 switch() {
-  echo "Input the container to switch to. Format: apx-CONTAINER_NAME"
+  echo "Input the container to switch to."
   echo "Containers:"
   distrobox-list
   read -p "> " container_name_switch

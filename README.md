@@ -9,25 +9,18 @@ Just like in vOS, the default shell will open a distrobox, seperating you from t
 More features are to come.
 
 # Images
-We offer two types of images with three branches.
-_____________
-- LTS: Stable, secure, and reliable. Does not receive breaking changes to system components immediately,
-  goes through a 5-year release cycle. Based on CentOS stream10.
-- Stable: A bit less stable, but still secure and reliable. May receive breaking changes to system components immediately.
-  Based on the latest stable release of Fedora 41.
-______________
-Both types have three branches:
+Based on centOS Stream, cherryOS is built to be solid as a rock.
+
+We offer three branches:
 - GNOME: Images coming with the GNOME Desktop Environment
 - KDE: Images coming with the KDE Desktop Environment
 - BASE: Base images with no desktop environment.
 
 # How do I switch?
-Open your terminal and run the following:
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/cherry-os/<image_name>
-```
-Replace <image_name> with your image name.
-For example, if you want the LTS type and the GNOME branch, the image name would be `lts-gnome`.
+Open your terminal and run the following, respectively:
+- cherryOS GNOME: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/cherry-os/stem-bourbon`
+- cherryOS KDE: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/cherry-os/stem-morello`
+- cherryOS BASE: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/cherry-os/stem-lambert`
 
 # When will I get updates?
 System updates may come regularly or every once in a while.

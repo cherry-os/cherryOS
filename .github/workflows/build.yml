@@ -28,12 +28,9 @@ jobs:
       fail-fast: false # stop GH from cancelling all matrix builds if one fails
       matrix:
         recipe:
-          - images/cherry-lts.yml
-          - images/cherry-lts-gnome.yml
-          - images/cherry-lts-kde.yml
-          - images/cherry-stable.yml
-          - images/cherry-stable-gnome.yml
-          - images/cherry-stable-kde.yml
+          - images/cherry-base.yml
+          - images/cherry-gnome.yml
+          - images/cherry-kde.yml
     steps:
       # the build is fully handled by the reusable github action
       - name: Build baseOS
