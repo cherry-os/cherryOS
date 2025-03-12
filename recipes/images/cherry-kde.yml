@@ -11,5 +11,5 @@ modules:
   - from-file: common/main/main-flatpaks.yml
   - from-file: common/main/main-setup.yml
   - from-file: common/main/main-packages.yml
-  - from-file: common/desktops/kde.yml
+  - from-file: common/desktops/de-kde.yml
   - type: signing
