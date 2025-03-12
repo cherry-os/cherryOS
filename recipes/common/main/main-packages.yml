@@ -7,7 +7,7 @@ install:
   - atuin
   - util-linux
   - topgrade
-  - chromium
+  - firefox
 remove:
   - toolbox
   - sudo
