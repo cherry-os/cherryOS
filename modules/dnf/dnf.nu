@@ -272,6 +272,8 @@ def add_repos [$repos: list]: nothing -> list<string> {
     | flatten
 }
 
+# A SPECIFIC AND POSSIBLY IMPORTANT FUNCTION WAS REMOVED, REMEMBER TO RESOLVE
+
 # Remove a list of repos. The list must be the IDs of the repos.
 def remove_repos [$repos: list]: nothing -> nothing {
   if ($repos | is-not-empty) {
