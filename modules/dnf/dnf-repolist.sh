@@ -17,14 +17,19 @@ echo "$lines" | while read -r line; do
     status=$(echo "$line" | awk '{print $NF}')
     repo_name=$(echo "$line" | awk '{$1=""; $NF=""; print $0}' | sed -e 's/^ *//g' -e 's/ *$//g')
 
+    if [ "$status" = "enabled" ]; then
+        status=true
+    else
+        status=false
+    fi
     if [ "$first_entry" = true ]; then
         first_entry=false
     fi
 
     echo "  {"
-    echo "    \"id\": \"$repo_id\","
-    echo "    \"name\": \"$repo_name\","
-    echo "    \"status\": \"$status\""
+    echo "    \"id\":\"$repo_id\","
+    echo "    \"name\":\"$repo_name\","
+    echo "    \"is_enabled\":$status"
     echo "  },"
 done
 
