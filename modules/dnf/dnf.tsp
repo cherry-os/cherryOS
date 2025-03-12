@@ -70,7 +70,7 @@ model RepoFiles {
   /**
    * List of repos to disable.
    * This must be the ID of the repo
-   * as seen in `dnf5 repolist`.
+   * as seen in `dnf4 repolist`.
    */
   disable?: Array<string>;
 }
