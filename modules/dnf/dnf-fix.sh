@@ -1,6 +1,6 @@
 #!/bin/bash
 
-output=$(dnf repo list --all 2>/dev/null)
+output=$(dnf repolist --all 2>/dev/null)
 
 if [ $? -ne 0 ]; then
     echo "Error: Unable to retrieve the repository list. Make sure dnf is installed and configured correctly."
@@ -19,15 +19,13 @@ echo "$lines" | while read -r line; do
 
     if [ "$first_entry" = true ]; then
         first_entry=false
-    else
-        echo ","
     fi
 
     echo "  {"
     echo "    \"id\": \"$repo_id\","
     echo "    \"name\": \"$repo_name\","
     echo "    \"status\": \"$status\""
-    echo "  }"
+    echo "  },"
 done
 
 echo "]"
