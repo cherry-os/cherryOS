@@ -240,7 +240,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
       }
 
       try {
-        ^dnf -y config-manager addrepo $repo
+        ^dnf -y config-manager --add-repo $repo
       } catch {
         exit 1
       }
