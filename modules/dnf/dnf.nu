@@ -144,7 +144,7 @@ def disable_rpmfusion []: nothing -> nothing {
 
 def negativo_repo_list []: nothing -> list<path> {
   try {
-    ^dnf -y repolist --all --json | from json
+    ^dnf -y repolist --all | jq --raw-input . | jq --slurp . | from json
   } catch {
     exit 1
   }
@@ -153,7 +153,7 @@ def negativo_repo_list []: nothing -> list<path> {
     | ansi strip
     | par-each {|repo|
       try {
-        ^dnf -y repo info $repo --all --json | from json
+        ^dnf -y repoinfo $repo --all | jq --raw-input . | jq --slurp . | from json
       } catch {
         exit 1
       }
@@ -176,7 +176,7 @@ def enable_negativo []: nothing -> nothing {
   add_repos [$NEGATIVO_URL]
 
   try {
-    ^dnf repo list --all --json
+    ^dnf repolist --all | jq --raw-input . | jq --slurp .
   } catch {
     exit 1
   }
@@ -255,7 +255,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
 
   # Get a list of info for every repo installed
   let repo_info = try {
-    ^dnf repo list --all --json
+    ^dnf repolist --all | jq --raw-input . | jq --slurp .
   } catch {
     exit 1
   }
@@ -263,7 +263,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
     | get id
     | par-each {|repo|
       try {
-        ^dnf repo info --json $repo
+        ^dnf repoinfo | jq --raw-input . | jq --slurp . $repo
       } catch {
         exit 1
       }
@@ -304,7 +304,7 @@ def remove_repos [$repos: list]: nothing -> nothing {
     $repos
       | par-each {|repo|
         try {
-          ^dnf -y repo info $repo --all --json | from json
+          ^dnf -y repoinfo $repo --all | jq --raw-input . | jq --slurp . | from json
         } catch {
           exit 1
         }
