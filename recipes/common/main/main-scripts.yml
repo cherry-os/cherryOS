@@ -3,4 +3,4 @@ scripts:
   - unprotectsudo.sh
   - add-exec-perms.sh
   - add-image-info.sh
-  - crb-setup.sh
+  - repo-setup.sh
