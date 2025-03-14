@@ -5,21 +5,23 @@ group-install:
     - gnome-desktop
 install:
   packages:
-    - gnome-weather
-    - gnome-clocks
-    - gnome-calculator
-    - gnome-disks
-    - gnome-tweaks
-    - gnome-text-editor
-    - gnome-software
-    - totem
-    - gparted
-    - gnome-logs
-    - loupe
-    - secrets
-    - file-roller
     - nautilus
-    - sushi
-    - gnome-text-editor
     - gnome-software
-    - blackbox-terminal
+type: default-flatpaks
+system:
+  install:
+    - org.gnome.Weather
+    - org.gnome.clocks
+    - org.gnome.Calculator
+    - org.gnome.TextEditor
+    - org.gnome.Showtime
+    - org.gnome.Logs
+    - org.gnome.Loupe
+    - org.gnome.World.Secrets
+    - org.gnome.FileRoller
+    - org.gnome.Papers
+    - org.gnome.NautilusPreviewer
+    - io.missioncenter.MissionCenter
+    - page.tesk.Refine
+    - com.raggesilver.BlackBox
+    - com.github.tchx84.Flatseal
