@@ -25,4 +25,4 @@ Open your terminal and run the following, respectively:
 # When will I get updates?
 System updates may come regularly or every once in a while.
 Updates for cherryOS components like the `cherry` tool will move through
-the development repository for testing before they reach the stable and LTS types.
+the development repository for testing before they reach stable.
