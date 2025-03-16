@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -n $PS1 ]; then
+if [ $- == *i* ]; then
     if [ ! -d "$HOME/.config/containerconf" ]; then
         echo "Hello there! Welcome to cherryOS!"
         echo "For you to access your shell, we need to set up the default container shell."
