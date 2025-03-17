@@ -3,6 +3,7 @@
 </p>
 
 [![bluebuild build badge](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml/badge.svg)](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml)
+
 Hey there!
 cherryOS isnt really anything new - except for its shell.
 Just like in vOS, the default shell will open a distrobox, seperating you from the host.
