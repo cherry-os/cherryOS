@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/be233212-170d-4afc-b672-526586618fea"/>
+  <img src="https://github.com/user-attachments/assets/b04a391d-f474-4d1d-8f4f-2841f691fb1b"/>
 </p>
 
 # cherryOS &nbsp; [![bluebuild build badge](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml/badge.svg)](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml)
