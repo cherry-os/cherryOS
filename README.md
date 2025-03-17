@@ -26,3 +26,6 @@ Open your terminal and run the following, respectively:
 System updates may come regularly or every once in a while.
 Updates for cherryOS components like the `cherry` tool will move through
 the development repository for testing before they reach stable.
+
+# Contributing
+Head over to https://github.com/cherry-os/cherryOS-devel for more info.
