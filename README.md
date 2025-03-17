@@ -2,7 +2,7 @@
   <img src="https://github.com/user-attachments/assets/b04a391d-f474-4d1d-8f4f-2841f691fb1b"/>
 </p>
 
-# cherryOS &nbsp; [![bluebuild build badge](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml/badge.svg)](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml)
+[![bluebuild build badge](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml/badge.svg)](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml)
 Hey there!
 cherryOS isnt really anything new - except for its shell.
 Just like in vOS, the default shell will open a distrobox, seperating you from the host.
