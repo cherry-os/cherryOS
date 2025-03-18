@@ -1,20 +1,9 @@
 #!/bin/bash
 
 repo_id="$1"
+repo_info=$(dnf repoinfo -q "$repo_id")
 
-if [ -z "$repo_id" ]; then
-  echo "Usage: $0 <repo_id>"
-  exit 1
-fi
-
-repo_info=$(dnf repoinfo "$repo_id")
-
-if [ $? -ne 0 ]; then
-  echo "Error: Failed to get repo information for $repo_id"
-  exit 1
-fi
-
-echo "{"
+echo "["
 echo "  \"$repo_id\": {"
 
   repo_id_val=$(echo "$repo_info" | grep -oP "^Repo-id *: *\K.*")
@@ -91,4 +80,4 @@ echo "  \"$repo_id\": {"
   fi
 
   echo "  }"
-echo "}"
+echo "]"

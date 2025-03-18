@@ -6,6 +6,7 @@ install:
     - atuin
     - util-linux
     - topgrade
+    - distrobox
     - firefox
 remove:
   packages:

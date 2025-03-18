@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cat /etc/pesticide.d/status
+exit 0

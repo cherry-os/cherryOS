@@ -1,0 +1,6 @@
+arch
+alpine
+fedora
+ubuntu
+debian
+opensuse

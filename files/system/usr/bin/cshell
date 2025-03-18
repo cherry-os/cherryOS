@@ -3,18 +3,14 @@
 if [ "$-" == *i* ]; then
     if [ ! -d "$HOME/.config/containerconf" ]; then
         echo "Hello there! Welcome to bourbonOS!"
-        echo "For you to access your shell, we need to set up the default container shell."
-        echo "Don't worry! Hopefully, this wont take long. We'll tell you when we are done."
-        distrobox-assemble create --file /etc/containerconf/configs.d/cherry.ini
-        echo "Done! Restart your shell to enjoy your container."
-        sleep 1d
-    elif [ -f "$HOME/.config/containerconf/override.conf" ]; then
-        echo "Starting your shell...."
-        exec distrobox-enter "$(cat $HOME/.config/containerconf/override.conf)"
+        echo "For you to access your shell, we need to set up the default container."
+        echo "Don't worry! This wont take long."
+        echo "The shell will open when we are done."
+        exec distrobox-assemble create --file /etc/containerconf/configs.d/.cherry/cherry.ini
     else
         echo "Starting your shell...."
-        exec distrobox-enter cherry-cli -- nu
+        exec distrobox-enter cherry-cli -- bash
     fi
 else
-    exec /usr/bin/env bash
+    exec /bin/bash
 fi
