@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/5fc1dbf1-b8c1-4096-a708-dca0bfb16996"/>
-  <img src="https://github.com/cherry-os/bourbonOS/actions/workflows/build.yml/badge.svg"/>
+  <img src="https://github.com/bourbonOS/bourbonOS/actions/workflows/build.yml/badge.svg"/>
 </p>
 
 No, we are not the alcohol. We are literally the best type of cherry in existence. Fight me.
