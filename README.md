@@ -40,6 +40,6 @@ Open your terminal and run the following, respectively:
 - bourbonOS BASE: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/bourbonOS/stem-lambert`
 
 # Contributing
-We'd love it if you want to aid in our development, and we appreciate it!
+We'd love it if you want to aid in our development, and we'd appreciate it!
 
 Head over to [our development repository](https://github.com/bourbonOS/bourbonOS-devel) for more info.
