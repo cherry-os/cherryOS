@@ -1,0 +1,10 @@
+[Unit]
+Description=Mount /var/nix to /nix
+After=ostree-remount.service
+BindsTo=var.mount
+
+[Mount]
+What=/var/nix
+Where=/nix
+Type=none
+Options=bind

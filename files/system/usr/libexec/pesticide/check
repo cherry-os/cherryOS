@@ -1,0 +1,49 @@
+#!/bin/bash
+
+current_deployment=$(ostree admin status | grep '⟳' | head -n 1)
+previous_deployment=$(ostree admin status | grep '⟳' | tail -n 1)
+
+hash_dirs() {
+    while IFS= read -r line; do
+        [[ "$line" =~ ^#.*$ ]] && continue
+        find "$line" -type f -print0 | sort -z | while IFS= read -r -d '' file; do
+            sha256sum "$file"
+        done | sha256sum
+    done < "$1"
+}
+
+if [ ! -f "/etc/pesticide/pesticide.conf" ]; then
+    echo "Configuration file does not exist."
+    exit 1
+elif [ "$current_deployment" != "$previous_deployment" ]; then
+    echo "An update has been applied. Regenerating hashes..."
+    if [ -f "/etc/pesticide.d/dirs.hash" ]; then
+        rm /etc/pesticide.d/dirs.hash
+    fi
+    hash_dirs /etc/pesticide.d/dirs.hash
+    echo "STATUS=OK" > /etc/pesticide.d/status
+    echo "Hashes regenerated."
+elif [ ! -f "/etc/pesticide.d/setup_is_done.lock" ]; then
+    echo "First run detected, creating hashes..."
+    hash_dirs /etc/pesticide.d/dirs.hash
+    touch /etc/pesticide.d/setup_is_done.lock
+    exit 0
+elif [ -f "/etc/pesticide.d/setup_is_done.lock" ]; then
+    echo "Checking hashes..."
+    hash_dirs /tmp/hash.tmp
+    diff /tmp/hash.tmp /etc/pesticide.d/dirs.hash
+    if [ $? -eq 0 ]; then
+        echo "STATUS=OK"
+        echo "STATUS=OK" > /etc/pesticide.d/status
+        rm /tmp/hash.tmp
+        exit 0
+    else
+        echo "STATUS=TAINTED"
+        echo "STATUS=TAINTED" > /etc/pesticide.d/status
+        rm /tmp/hash.tmp
+        exit 1
+    fi
+else
+    echo "Unknown error."
+    exit 1
+fi
