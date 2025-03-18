@@ -18,9 +18,9 @@ We offer three branches:
 
 # How do I switch?
 Open your terminal and run the following, respectively:
-- bourbonOS GNOME: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/cherry-os/stem-bourbon`
-- bourbonOS KDE: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/cherry-os/stem-morello`
-- bourbonOS BASE: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/cherry-os/stem-lambert`
+- bourbonOS GNOME: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/bourbonOS/stem-bourbon`
+- bourbonOS KDE: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/bourbonOS/stem-morello`
+- bourbonOS BASE: `rpm-ostree rebase ostree-unverified-registry:ghcr.io/bourbonOS/stem-lambert`
 
 # When will I get updates?
 System updates may come regularly or every once in a while.
