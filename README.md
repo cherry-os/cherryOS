@@ -15,7 +15,7 @@ We include a bunch of tools to make this possible, if not more streamlined.
 
 Those tools being:
 
-- `cherry`: a command-line tool uses for managing containers, AKA "branches," the baseOS, AKA the "stem," and filesystem protection, AKA "pesticide." Uses [distrobox](https://github.com/89luca89/distrobox) under the hood.
+- `cherry`: a command-line tool uses for managing containers (AKA "branches"), the baseOS (AKA the "stem"), and filesystem protection (AKA "pesticide"). Uses [distrobox](https://github.com/89luca89/distrobox) under the hood.
 - `cshell`: the shell of all users, it's purpose is to start a lightweight, blinged-out container for the user to use as their shell
 - `pesticide`: our version of vanillaOS's FsGuard, it's purpose is to verify directories containing important executables, incase of corruption. In rare cases, corrupt executables can cause damage.
 - `nix`: a command-line tool made by NixOS, meant as a better replacement for installing packages on the base system and Homebrew. More info [here.](https://nixos.org/guides/how-nix-works/)
