@@ -3,5 +3,4 @@ scripts:
   - unprotectsudo.sh
   - add-exec-perms.sh
   - add-image-info.sh
-  - install-nix.sh
   - repo-setup.sh

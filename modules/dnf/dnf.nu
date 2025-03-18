@@ -153,7 +153,7 @@ def negativo_repo_list []: nothing -> list<path> {
     | ansi strip
     | par-each {|repo|
       try {
-        ^find / -name "dnf-repolist.sh" -print 2>/dev/null; bash /tmp/modules/dnf/dnf-repolist.sh | from json
+        ^bash /tmp/modules/dnf/dnf-repolist.sh | from json
       } catch {
         exit 1
       }
@@ -255,7 +255,7 @@ def add_repos [$repos: list]: nothing -> list<string> {
 
   # Get a list of info for every repo installed
   let repo_info = try {
-    ^find / -name "dnf-repolist.sh" -print 2>/dev/null; bash /tmp/modules/dnf/dnf-repolist.sh
+    ^bash /tmp/modules/dnf/dnf-repolist.sh
   } catch {
     exit 1
   }

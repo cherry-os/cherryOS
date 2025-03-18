@@ -1,6 +1,6 @@
 ---
 name: stem-lambert
-description: CentOS bootc hinging on a bash script. GNOME edition.
+description: CentOS bootc hinging on a bash script. Cosmic edition.
 base-image: quay.io/centos-bootc/centos-bootc
 image-version: stream10
 
@@ -10,4 +10,5 @@ modules:
   - from-file: common/main/main-services.yml
   - from-file: common/main/main-packages.yml
   - from-file: common/desktops/de-gnome.yml
+  - from-file: common/desktops/de-gnome-flatpaks.yml
   - type: signing

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-set -oue pipefail
+set -ouex pipefail
 
 chmod +x ../system/usr/bin/* -R
