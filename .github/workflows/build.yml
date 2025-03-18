@@ -1,4 +1,4 @@
-name: Build cherryOS variants
+name: Build bourbonOS variants
 on:
   schedule:
     - cron:
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   bluebuild:
-    name: Build CherryOS
+    name: Build bourbonOS
     runs-on: ubuntu-latest
     permissions:
       contents: read

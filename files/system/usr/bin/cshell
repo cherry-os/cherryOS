@@ -2,7 +2,7 @@
 
 if [ "$-" == *i* ]; then
     if [ ! -d "$HOME/.config/containerconf" ]; then
-        echo "Hello there! Welcome to cherryOS!"
+        echo "Hello there! Welcome to bourbonOS!"
         echo "For you to access your shell, we need to set up the default container shell."
         echo "Don't worry! Hopefully, this wont take long. We'll tell you when we are done."
         distrobox-assemble create --file /etc/containerconf/configs.d/cherry.ini

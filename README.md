@@ -2,8 +2,7 @@
   <img src="https://github.com/user-attachments/assets/5fc1dbf1-b8c1-4096-a708-dca0bfb16996"/>
 </p>
 
-[![bluebuild build badge](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml/badge.svg)](https://github.com/cherry-os/cherryOS/actions/workflows/build.yml)
-
+# bourbonOS &nbsp; [![bluebuild build badge](https://github.com/cherry-os/bourbonOS/actions/workflows/build.yml/badge.svg)](https://github.com/cherry-os/bourbonOS/actions/workflows/build.yml)
 Hey there!
 bourbonOS isnt really anything new - except for its shell.
 Just like in vOS, the default shell will open a distrobox, seperating you from the host.
